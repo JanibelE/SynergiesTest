@@ -36,7 +36,17 @@ namespace SynergiesFW
         public static void switchTab()
         {
             List<String> tabs2 = new List<String>(driver.WindowHandles);
-            driver.SwitchTo().Window(tabs2.ElementAt(0));
+            String currentHandle = driver.CurrentWindowHandle;
+            int cant = tabs2.Count;
+            for (int i = 0; i < cant; i++)
+            {
+                if (!tabs2.ElementAt(i).Equals(currentHandle))
+                {
+                    driver.SwitchTo().Window(tabs2.ElementAt(i++));
+                }
+            }
+
+
         }
 
 
